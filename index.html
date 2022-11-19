@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Session storage</title>
+</head>
+<body>
+  <form action="">
+    <div class="button-container">
+      <input id="rating-1" name="ratings" class="rating" type="radio">
+      <label for="rating-1">1</label>
+      <input id="rating-2" name="ratings" class="rating" type="radio">
+      <label for="rating-2">2</label>
+      <input id="rating-3" name="ratings" class="rating" type="radio">
+      <label for="rating-3">3</label>
+      <input id="rating-4" name="ratings" class="rating" type="radio">
+      <label for="rating-4">4</label>
+      <input id="rating-5" name="ratings" class="rating" type="radio">
+      <label for="rating-5">5</label>
+    </div>
+    <input id="submit" type="submit">
+  </form>
+  <p id="thanks">thanks for clicking!</p>
+  <p id='rating-report'></p>
+  <script>
+    const buttonContainer = document.querySelector('.button-container');
+    const submit = document.querySelector('#submit');
+    const ratings = document.querySelectorAll('.rating');
+    const thanks = document.querySelector('#thanks');
+    const ratingReport = document.querySelector('#rating-report');
+    
+    submit.addEventListener('click', (e) => {
+      e.preventDefault();
+      for (rating of ratings) {
+        if (rating.checked) {
+          sessionStorage.setItem("answer",rating.id.slice(-1));
+        }
+      }
+      buttonContainer.style.display = "none";
+      submit.style.display = "none";
+      thanks.style.display = "block";
+      ratingReport.innerHTML = `you gave us ${sessionStorage.getItem("answer")} out of 5 stars`
+    }, {once: true});
+  </script>
+</body>
+<style>
+  #thanks {
+    display: none;
+  }
+  .button-container{
+    display: flex;
+    justify-content: space-between;
+  }
+  .button-container input[type="radio"] {
+    display: none;
+  }
+  .button-container label {
+    height: 40px;
+    width: 40px;
+    background-color: pink;
+    cursor: pointer;
+  }
+  .button-container input[type="radio"]:checked+label {
+  background-color: #bbb;
+}
+</style>
+</html>
