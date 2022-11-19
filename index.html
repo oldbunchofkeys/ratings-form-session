@@ -33,7 +33,7 @@
     
     submit.addEventListener('click', (e) => {
       e.preventDefault();
-      for (rating of ratings) {
+      for (let rating of ratings) {
         if (rating.checked) {
           sessionStorage.setItem("answer", rating.id.slice(-1));
         }
@@ -64,6 +64,6 @@
   }
   .button-container input[type="radio"]:checked+label {
     background-color: #bbb;
-}
+  }
 </style>
 </html>
