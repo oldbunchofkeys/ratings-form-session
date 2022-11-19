@@ -35,7 +35,7 @@
       e.preventDefault();
       for (rating of ratings) {
         if (rating.checked) {
-          sessionStorage.setItem("answer",rating.id.slice(-1));
+          sessionStorage.setItem("answer", rating.id.slice(-1));
         }
       }
       buttonContainer.style.display = "none";
